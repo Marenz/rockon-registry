@@ -1,0 +1,72 @@
+{
+    "Photoprism": {
+        "website": "https://photoprism.app",
+        "version": "1.0",
+        "description": "PhotoPrism® is an app for browsing, organizing and sharing your personal photo collection.",
+        "more_info": "",
+        "containers": {
+            "photoprism": {
+                "image": "photoprism/photoprism",
+                "launch_order": 1,
+                "opts": [
+                    [
+                        "-v",
+                        "/etc/localtime:/etc/localtime:ro"
+                    ],
+                    [
+                        "--security-opt",
+                        "seccomp=unconfined"
+                    ],
+                    [
+                        "--security-opt",
+                        "apparmor=unconfined"
+                    ]
+                ],
+                "volumes": {
+                    "/photoprism/storage": {
+                        "description": "Configuration volume for photoprism.",
+                        "label": "Configuration for photoprism."
+                    },
+                    "/photoprism/originals": {
+                        "description": "Primary share that contains your photos. You can add more after this guide by mounting them as sub-folders of this.",
+                        "label": "Data storage"
+                    }
+                },
+                "ports": {
+                    "2342": {
+                        "description": "photoprism web ui port",
+                        "host_default": 2342,
+                        "label": "WebUI port",
+                        "protocol": "tcp",
+                        "ui": true
+                    }
+                },
+                "environment": {
+                    "UID": {
+                        "description": "Enter a valid UID of an existing user with permission to media shares to run photoprism as.",
+                        "label": "UID",
+                        "index": 1,
+                        "default":1000
+                    },
+                    "GID": {
+                        "description": "Enter a valid GID of an existing user with permission to media shares to run photoprism as.",
+                        "label": "GID",
+                        "index": 2,
+                        "default":1000
+                    },
+                    "PHOTOPRISM_ADMIN_PASSWORD": {
+                        "description": "Initial password for the webinterface",
+                        "label": "Initial password",
+                        "index": 3
+                    },
+                    "PHOTOPRISM_UPLOAD_NSFW": {
+                        "description": "Should be \"true\" if you want to allow uploading of NSWF pictures",
+                        "label": "NSFW pictures flag",
+                        "index": 4
+                    }
+                }
+            }
+        }
+    }
+}
+

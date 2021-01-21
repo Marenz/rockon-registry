@@ -51,6 +51,7 @@
     "OwnCloud": "owncloud.json",
     "OwnCloud-Official": "owncloud-official.json",
     "OwnCloudHTTPS": "owncloudHTTPS.json",
+    "Photoprism": "photoprism.json",
     "Pi-Hole": "pi-hole.json",
     "Plex": "plex.json",
     "Plexpy": "plexpy.json",
